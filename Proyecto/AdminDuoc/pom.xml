@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <!-- Información del proyecto -->
+    <groupId>com.mycompany</groupId>
+    <artifactId>AdminDuoc</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>22</maven.compiler.release>
+        <exec.mainClass>com.mycompany.adminduoc.AdminDuoc</exec.mainClass>
+    </properties>
+        <!-- Dependencias del proyecto -->
+	<dependencies>
+        <!-- Dependencia de JavaMail API -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>javax.mail</artifactId>
+            <version>1.6.2</version>
+        </dependency>
+        
+        <!-- Dependencia de MySQL connector -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version> <!-- Usa la versión adecuada de MySQL Connector -->
+        </dependency>
+    </dependencies>
+    
+     <!-- Configuración del proceso de empaquetado JAR -->
+    <build>
+    <plugins>
+        <!-- Plugin para empaquetar el JAR con dependencias -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>3.1.0</version>
+            <configuration>
+                <!-- Usar el descriptor predefinido para incluir dependencias -->
+                <descriptorRefs>
+                    <descriptorRef>jar-with-dependencies</descriptorRef>
+                </descriptorRefs>
+                <archive>
+                    <manifest>
+                        <!-- Especificar la clase principal para el JAR ejecutable -->
+                        <mainClass>com.mycompany.adminduoc.AdminDuoc</mainClass>
+                    </manifest>
+                </archive>
+            </configuration>
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>single</goal> <!-- Este objetivo genera el JAR con dependencias -->
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <compilerArgs>
+            <arg>-Xlint</arg>
+          </compilerArgs>
+        </configuration>
+      </plugin>
+    </plugins>
+</build>
+</project>
